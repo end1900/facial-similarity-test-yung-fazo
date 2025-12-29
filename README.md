@@ -17,13 +17,16 @@ So, as you can imagine, many people around the world might look somewhat similar
 ---
 
 ## How to Download
-
-1. Go to the repo (https://github.com/end1900/facial-similarity-test-yung-fazo)  
-2. Click **Code → Download ZIP**  
-3. Extract the ZIP anywhere on your computer  
+ 
 ## Option 1 (Easy)
-Run .exe file (lcoated in the dist folder)
+1. Go to releases
+2. Download current version
+3. Unzip file
+4. Run .exe file (lcoated in the dist folder)
 ## Option 2
+1. Go to the repo (https://github.com/end1900/facial-similarity-test-yung-fazo)  
+2. **Code → Download ZIP**  
+3. Extract the ZIP anywhere on your computer 
 Open a terminal in the folder and run:
 
 ```bash
