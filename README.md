@@ -6,15 +6,19 @@ Haha, just kidding… but if you didn’t know, Guyana has one of the world’s 
 
 So, as you can imagine, many people around the world might look somewhat similar to Yung Fazo, right..? 
 
+## Tips for Best Results
 
+- Face should be straight and well-lit  
+- No hats, sunglasses, or masks  
+- Supported formats: JPG, PNG, HEIC  
+- Bigger, clearer photos = better score  
+- Avoid shadows or weird angles
 
 ---
 
 ## How to Download
 
-**Option 1 — Download ZIP (easy)**
-
-1. Go to the repo: [Fazo Skunt Detector](https://github.com/end1900/facial-similarity-test-yung-fazo)  
+1. Go to the repo (https://github.com/end1900/facial-similarity-test-yung-fazo)  
 2. Click **Code → Download ZIP**  
 3. Extract the ZIP anywhere on your computer  
 4. Open a terminal in the folder and run:
