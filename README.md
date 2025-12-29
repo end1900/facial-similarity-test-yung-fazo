@@ -21,7 +21,10 @@ So, as you can imagine, many people around the world might look somewhat similar
 1. Go to the repo (https://github.com/end1900/facial-similarity-test-yung-fazo)  
 2. Click **Code → Download ZIP**  
 3. Extract the ZIP anywhere on your computer  
-4. Open a terminal in the folder and run:
+## Option 1 (Easy)
+Run .exe file
+## Option 2
+Open a terminal in the folder and run:
 
 ```bash
 pip install -r requirements.txt
@@ -29,3 +32,4 @@ python main.py
 ```
 ## Sources
 Buchholz, K. (2024, June 3). The world’s biggest diasporas [Infographic]. Forbes. https://www.forbes.com/sites/katharinabuchholz/2022/11/11/the-worlds-biggest-diasporas-infographic/
+On The Radar Radio. (2024, May 14). The Yung Fazo “On the Radar” freestyle [Video]. YouTube. https://www.youtube.com/watch?v=CvUKD95ayck
