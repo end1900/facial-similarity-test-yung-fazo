@@ -4,6 +4,7 @@ from PIL import Image, ImageTk, ImageDraw
 import face_recognition
 import os
 import numpy as np
+import sys  # fixed dis 
 
 # shi to get heic support ;,3
 try:
@@ -15,11 +16,18 @@ except ImportError:
 class FaceComparisonApp:
     def __init__(self):
         self.window = ctk.CTk()
-        self.window.title("De Obeah Machine - Fazo Skunt Detector")
+        self.window.title("Yung Fazo Similarity Test")
         self.window.geometry("920x720")
         ctk.set_appearance_mode("dark")
+        
+        # This part ensures the EXE finds the bundled image 
+        if getattr(sys, 'frozen', False):
+            base_path = sys._MEIPASS
+        else:
+            base_path = os.path.dirname(os.path.abspath(__file__))
+            
         self.uploaded_path = None
-        self.reference_path = "fazo.png"
+        self.reference_path = os.path.join(base_path, "fazo.png")
         self.setup_ui()
         self.load_ref()
 
@@ -43,7 +51,7 @@ class FaceComparisonApp:
         accent = ctk.CTkFrame(top, fg_color="#FCD116", height=6, corner_radius=0)
         accent.pack(fill="x", pady=(0, 10))
         ctk.CTkLabel(
-            top, text="DE OBEAH MACHINE", font=("Arial Black", 38, "bold"), text_color="#FCD116"
+            top, text="DE OPEN SOURCE OBEAH MACHINE", font=("Arial Black", 38, "bold"), text_color="#FCD116"
         ).pack(pady=(20, 5))
         ctk.CTkLabel(
             top, text="FAZO SKUNT DETECTOR", font=("Arial", 20, "bold"), text_color="white"
@@ -106,13 +114,12 @@ class FaceComparisonApp:
                 print(f"Error loading reference: {e}")
         else:
             self.ref_pic.configure(
-                text="Aye raas!\nfazo.png missing!\nPut de bloodclaat picture\nin de folder nah", text_color="#CE1126"
+                text="Wah de rass!\nfazo.png missing!\nPut de bloodclaat picture\nin de folder nah", text_color="#CE1126"
             )
 
     def get_pic(self):
         p = filedialog.askopenfilename(
             title="Pick yuh face nah", 
-            # heic shi again bruh FUCK PHONES
             filetypes=[("Pictures", "*.jpg *.jpeg *.png *.PNG *.JPG *.JPEG *.heic *.HEIC *.heif")]
         )
         if not p:
@@ -123,22 +130,21 @@ class FaceComparisonApp:
             self.user_pic.configure(image=pic, text="")
             self.user_pic.image = pic
             self.output.configure(
-                text="Arite done! Now press de red button fuh run de obeah!", text_color="#009E49"
+                text="Done! Now press de red button fuh run de obeah!", text_color="#009E49"
             )
         except Exception as e:
-            messagebox.showerror("Rahtid man!", f"Dis picture mash up: {e}")
+            messagebox.showerror("Wah de rass!", f"Dis picture mash up: {e}")
 
     def check_face(self):
         if not self.uploaded_path:
             messagebox.showwarning("Aye bai", "Upload yuh rass face first nah!")
             return
         if not os.path.exists(self.reference_path):
-            messagebox.showerror("Stewps!", "fazo.png missing! Yuh mad or wah?")
+            messagebox.showerror("Wah de rass!", "fazo.png missing! Yuh mad or wah?")
             return
         self.output.configure(text="De obeah deh pon it...", text_color="#FCD116")
         self.window.update()
         try:
-            # heicccccccccccc
             u_pil = Image.open(self.uploaded_path).convert("RGB")
             u_img = np.array(u_pil)
             
@@ -161,7 +167,7 @@ class FaceComparisonApp:
             top, right, bottom, left = u_locs[0]
             face_pixels = u_img[top:bottom, left:right]
             avg_brightness = np.array(Image.fromarray(face_pixels).convert('L')).mean()
-            # brown boy high score shi
+            
             pigment_multiplier = 1.0
             if avg_brightness < 90:    
                 pigment_multiplier = 1.30
@@ -171,40 +177,40 @@ class FaceComparisonApp:
             u_face = u_faces[0]
             r_face = r_faces[0]
             dist = face_recognition.face_distance([r_face], u_face)[0]
-            ## multiplier --------------------------------------------------------------- important blud
+            
             score = (((1 - dist) * 100) * 1.94) * pigment_multiplier
-            # ----------------------------------------------------------------------- ****************************
+            
             if score > 100:
                 score = 100
 
             if score >= 75:
-                msg = "RAAAAAS! YUH IS FAZO TWIN BAI! True bloodclaat skunt!"
+                msg = "WHA DE RASS! YUH IS FAZO TWIN BAI! True bloodclaat skunt!"
                 clr = "#00ff88"
             elif score >= 60:
-                msg = "Aye bai me see it fuh true! Yuh favour de man proppa!"
+                msg = "Aye bai, yuh kinda look like he, but yuh nah twins!"
                 clr = "#FCD116"
             elif score >= 45:
-                msg = "Ehhh... lil bit yuh favour him. Not bad still"
+                msg = "Ehhh… yuh lil bit like he, but doh lie, yuh nah Fazo."
                 clr = "#ffaa00"
             elif score >= 30:
-                msg = "Nah man, yuh stretching it bad. Barely see resemblance"
+                msg = "Bai nah! Yuh doh look nuttin like he. Yuh look like old crappo pickney!"
                 clr = "#ff6600"
             elif score >= 15:
-                msg = "Bai stop de fuckry. Yuh doan favour him atall"
+                msg = "Bai stop de fuckry. Yuh nah Fazo, yuh look like rotten cassava, pure crappo!"
                 clr = "#ff4444"
             else:
-                msg = "Pure madness! Yuh doan look nuttin like Fazo! Yuh is pure crappo bai!"
+                msg = "Madness! YUH CRAPPO BAI! Yuh look like doh even wash yuh face today, nuttin like Fazo!"
                 clr = "#CE1126"
 
             txt = f"{score:.1f}% Match\n{msg}"
             self.output.configure(text=txt, text_color=clr)
         except Exception as e:
-            messagebox.showerror("Rahtid!", f"De whole ting crash: {e}")
+            messagebox.showerror("Wah de rass!", f"De whole ting crash: {e}")
             self.output.configure(text="Ting cork up bad!", text_color="#CE1126")
 
     def run(self):
         self.window.mainloop()
-# this app is so ass bro
+
 if __name__ == "__main__":
     app = FaceComparisonApp()
     app.run()
