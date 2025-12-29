@@ -1,1 +1,5 @@
-
+customtkinter
+Pillow
+face_recognition
+numpy
+pillow-heif
