@@ -22,6 +22,6 @@ So, as you can imagine, many people around the world might look somewhat similar
 ```bash
 pip install -r requirements.txt
 python main.py
-
+```
 ## sources
 Buchholz, K. (2024, June 3). The world’s biggest diasporas [Infographic]. Forbes. https://www.forbes.com/sites/katharinabuchholz/2022/11/11/the-worlds-biggest-diasporas-infographic/
